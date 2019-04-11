@@ -12,6 +12,8 @@ import {SearchBox} from './components/SearchBox'
 import {Header} from './containers/Header'
 import {Index} from './Pages/Index'
 import {DescriptionPopups} from './containers/DescriptionPopups'
+import {getPetList} from "./api/getPetList";
+
 const infoContainer = {
 
 }
@@ -79,41 +81,9 @@ ReactDOM.render(<Index/>, document.getElementById('app'))
 //     , document.getElementById('app'))
 
 ws$.subscribe((data) => console.log(data))
-ws$.next({
-    message: "chenggong",
-    code: 200,
-    type: 'MasonryList',
-    data: {
-        index: 0,
-        imgURL: ['/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg','/test.jpg',],
-        description: [{title: "1", description: "test1", id: "1"},
-            {title: "2", description: "test2", id: "2"},
-            {title: "3", description: "test3", id: "3"},
-            {title: "4", description: "test4", id: "4"},
-            {title: "5", description: "test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 test5test5 ", id: "5"},
-            {title: "6", description: "test6", id: "6"},
-            {title: "7", description: "test7", id: "7"},
-            {title: "8", description: "test8", id: "8"},
-            {title: "9", description: "test9", id: "9"},
-            {title: "10", description: "test10", id: "10"},
-            {title: "11", description: "test11", id: "11"},
-        ],
-    },
-})
+getPetList(0)
 
-setTimeout(() => {
-    ws$.next({
-        message: "chenggong",
-        code: 200,
-        type: 'MasonryList',
-        data: {
-            index: 0,
-            imgURL: ["test2.com"],
-            description: [{title: "1", description: "test1", id: "1"}
-            ],
-        },
-    })
-}, 3000)
+
 
 setTimeout(() => {
     ws$.next({

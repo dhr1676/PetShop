@@ -1,0 +1,51 @@
+.headerContainer {
+    display: flex;
+    /* Google Chrome */
+    padding: 1rem 1rem;
+    overflow: hidden
+}
+
+.activated {
+    color: white;
+}
+
+.activated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: -1;
+    filter: blur(10px);
+    margin: -10px;
+    background: rgba(0, 0, 0, 0.5);
+    animation: ani 0.5s;
+}
+
+@keyframes ani {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.logoContainer {
+    flex: 1
+}
+
+.commandContainer {
+    margin-left: 2rem;
+    margin-right: 5rem;
+}
+
+.commandContainer > span {
+    cursor: pointer;
+}
+
+.commandContainer > span:hover {
+    color: #FF6666;
+}

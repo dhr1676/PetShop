@@ -1,0 +1,10 @@
+.infoFlowContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.colContainer {
+    margin: 0 0.5em;
+}

@@ -1,0 +1,26 @@
+.infoContainer {
+    border-radius: 1em;
+    position: relative;
+    background: aqua;
+    overflow: hidden;
+    width: 100%;
+    transition: transform 0.1s;
+}
+
+.infoContainer:hover {
+    transform: scale(1.05, 1.05);
+    box-shadow: 0 0 4px 0 rgba(0,0,0,0.75);
+    transform-origin: center;
+}
+
+.childrenContainer {
+    height: 100%;
+    width: 100%;
+}
+.popupsContainer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}

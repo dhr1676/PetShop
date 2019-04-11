@@ -64,6 +64,10 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
         key: '10',
         description: 'Fee',
         detail: props.fee
+    }, {
+        key: '11',
+        description: 'Description',
+        detail: props.description
     }]
     return (
         <div className={style.descriptionPopupsContainer}>

@@ -5,18 +5,16 @@ import {IInfoFlowContainerProps, InfoFlowContainer} from './containers/InfoFlowC
 import {IInfo} from './interfaces/IInfo'
 import {withObservableStream} from './connector/withObservable'
 import {petList$} from './dataStreams/petList$'
-import {IPetList, IPetListData} from './dataStreams/models/ReceivedData/Data-types/IPetListData'
+import {IPetListData} from './dataStreams/models/ReceivedData/Data-types/IPetListData'
 import {map, pairwise, scan, startWith, tap} from 'rxjs/operators'
 import {trunk$, ws$} from './dataStreams/thunk$'
 import {SearchBox} from './components/SearchBox'
 import {Header} from './containers/Header'
 import {Index} from './Pages/Index'
 import {DescriptionPopups} from './containers/DescriptionPopups'
-import {getPetList} from "./api/getPetList";
 
-const infoContainer = {
+import {getPetList} from './api/getPetList'
 
-}
 
 const infoArray: IInfo[] = [{title: "1", description: "test1", id: "1"},
     {title: "2", description: "test2", id: "2"},

@@ -5,7 +5,7 @@ require("@babel/polyfill")
 module.exports = {
     devServer: {
         contentBase: path.join(__dirname),
-        publicPath: path.join(__dirname),
+        publicPath: 'http://localhost:9000/',
         compress: true,
         port: 9000,
         proxy: {

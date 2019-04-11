@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 import pymysql
 from JSON_PetInfo import get_json_pet_info_detail, PET_INFO_DETAIL_MYSQL, PET_INFO_DETAIL_ATTRIBUTES
+from JSON_Return_Format import get_json_format
 
 
 class PetInfoDetail(Resource):
@@ -25,8 +26,8 @@ class PetInfoDetail(Resource):
         cur.execute(sql_1)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
-            return "PetID Not Found! Get Failed!", 404
-        return content, 200
+            return get_json_format("Success", 200, "PetSearch", [])
+        return get_json_format("Success", 200, "PetSearch", content)
 
     def post(self, _pet_id):
         cur = self.connector.cursor()
@@ -34,7 +35,7 @@ class PetInfoDetail(Resource):
         sql_1 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id_
         cur.execute(sql_1)
         if cur.fetchall():
-            return "PetID Exists! Create Failed!", 400
+            return get_json_format("Already Exists", 403, "PetSearch", [])
 
         parser = reqparse.RequestParser()
         for attribute in PET_INFO_DETAIL_MYSQL:
@@ -53,8 +54,8 @@ class PetInfoDetail(Resource):
         cur.execute(sql_3)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
-            return "Unknown Error! Create Failed!", 400
-        return content, 200
+            return get_json_format("Failed", 404, "PetSearch", [])
+        return get_json_format("Success", 200, "PetSearch", content)
 
     def put(self, _pet_id):
         """
@@ -68,7 +69,7 @@ class PetInfoDetail(Resource):
         cur.execute(sql_1)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
-            return "PetID Not Found! Delete Failed!", 404
+            return get_json_format("Failed", 404, "PetSearch", [])
 
         parser = reqparse.RequestParser()
         for attribute in PET_INFO_DETAIL_MYSQL:
@@ -84,15 +85,14 @@ class PetInfoDetail(Resource):
 
         cur.callproc(procname='petshop.update_pet',
                      args=insert_content)
-
         self.connector.commit()
 
         sql_3 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id_
         cur.execute(sql_3)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
-            return "Unknown Error! Create Failed!", 400
-        return content, 200
+            return get_json_format("Failed", 404, "PetSearch", [])
+        return get_json_format("Success", 200, "PetSearch", content)
 
     def delete(self, _pet_id):
         cur = self.connector.cursor()
@@ -101,9 +101,9 @@ class PetInfoDetail(Resource):
         cur.execute(sql_1)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
-            return "PetID Not Found! Delete Failed!", 404
+            return get_json_format("Failed", 404, "PetSearch", [])
 
         sql_2 = "DELETE FROM pet_info WHERE pet_id = " + _pet_id_
         cur.execute(sql_2)
         self.connector.commit()
-        return "Delete Success", 200
+        return get_json_format("Success", 200, "PetSearch", [])

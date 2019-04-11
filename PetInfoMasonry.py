@@ -1,6 +1,7 @@
 from flask_restful import Resource, reqparse
 import pymysql
-from JSON_PetInfo import get_json_pet_info_detail, PET_INFO_DETAIL_MYSQL
+from JSON_PetInfo import get_json_pet_info_detail, PET_INFO_DETAIL_MYSQL, get_json_pet_info_masonry
+from JSON_Return_Format import get_json_format
 
 
 class PetInfoMasonry(Resource):
@@ -27,7 +28,7 @@ class PetInfoMasonry(Resource):
                 "ORDER BY pet_id " \
                 "LIMIT {}, {}".format(int(args["start_index"]), int(args["length"]))
         cur.execute(sql_1)
-        content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
+        content = [get_json_pet_info_masonry(i) for i in cur.fetchall()]
 
         # 关闭游标
         cur.close()
@@ -35,4 +36,5 @@ class PetInfoMasonry(Resource):
         # 关闭连接
         self.connector.close()
 
-        return content, 301
+        return get_json_format("Get Masonry Success!", 200, "MasonryList",
+                               {"index": int(args["start_index"]) + int(args["length"]) - 1, "info_array": content})

@@ -28,4 +28,11 @@ class PetInfoMasonry(Resource):
                 "LIMIT {}, {}".format(int(args["start_index"]), int(args["length"]))
         cur.execute(sql_1)
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
-        return content, 200
+
+        # 关闭游标
+        cur.close()
+
+        # 关闭连接
+        self.connector.close()
+
+        return content, 301

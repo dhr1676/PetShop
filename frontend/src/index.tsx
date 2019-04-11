@@ -5,7 +5,7 @@ import {IInfoFlowContainerProps, InfoFlowContainer} from './containers/InfoFlowC
 import {IInfo} from './interfaces/IInfo'
 import {withObservableStream} from './connector/withObservable'
 import {petList$} from './dataStreams/petList$'
-import {IPetList, IPetListData} from './dataStreams/models/ReceivedData/Data-types/IPetListData'
+import {IPetListData} from './dataStreams/models/ReceivedData/Data-types/IPetListData'
 import {map, pairwise, scan, startWith, tap} from 'rxjs/operators'
 import {trunk$, ws$} from './dataStreams/thunk$'
 import {SearchBox} from './components/SearchBox'

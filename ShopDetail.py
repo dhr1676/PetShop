@@ -30,6 +30,8 @@ class ShopDetail(Resource):
         #              args=[_shop_id])
 
         content = [get_json_shop_detail(i) for i in cur.fetchall()]
+        print(type(content))
+        print(type(content[0]))
         # If we use cur.fetchall() one time, the all content will be removed
         if not content:
             return get_json_format("Success", 200, "ShopSearch", {})

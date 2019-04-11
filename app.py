@@ -22,4 +22,3 @@ api.add_resource(PetInfoUpdate, "/PetInfoUpdate/<string:_pet_id>")
 api.add_resource(ShopDetail, "/ShopDetail/<string:_shop_id>")
 
 app.run(debug=True)
-# file:///C:/Games/PycharmProjects/PetShop/data/image/

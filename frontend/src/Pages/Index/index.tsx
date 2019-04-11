@@ -195,7 +195,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                         {
                             this.props.imageURL.map(
                                 (url, index) => (
-                                    <img key={`key_${url}`} src={url} alt={'test'} style={{height: `${350 + Math.sin(index) * 100}px`}}/>
+                                    <img key={`key_${url}`} src={url} alt={'test'} style={{height: `${350 + Math.sin(index) * 100}px` minWidth: '100%'}}/>
                                 ),
                             )
                         }

@@ -14,6 +14,11 @@ class PetInfoDelete(Resource):
         )
 
     def delete(self, _pet_id):
+        """
+        Delete the data using pet_id
+        :param _pet_id:
+        :return:
+        """
         cur = self.connector.cursor()
         _pet_id_ = "\"" + _pet_id + "\""
         sql_1 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id_

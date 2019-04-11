@@ -3,7 +3,7 @@ import pymysql
 from JSON_PetInfo import get_json_pet_info_detail, PET_INFO_DETAIL_MYSQL, PET_INFO_DETAIL_ATTRIBUTES
 
 
-class PetInfoCreate(Resource):
+class PetInfoUpdate(Resource):
     def __init__(self):
         self.connector = pymysql.connect(
             host='localhost',
@@ -13,18 +13,19 @@ class PetInfoCreate(Resource):
             charset='utf8'
         )
 
-    def post(self, _pet_id):
+    def put(self, _pet_id):
         """
-        Create a new data and insert into MySQL database
+        Update the data using pet_id
         :param _pet_id:
         :return:
         """
         cur = self.connector.cursor()
-        _pet_id_ = "\'" + _pet_id + "\'"
+        _pet_id_ = "\"" + _pet_id + "\""
         sql_1 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id_
         cur.execute(sql_1)
-        if cur.fetchall():
-            return "PetID Exists! Create Failed!", 400
+        content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
+        if not content:
+            return "PetID Not Found! Delete Failed!", 404
 
         parser = reqparse.RequestParser()
         for attribute in PET_INFO_DETAIL_MYSQL:
@@ -33,21 +34,13 @@ class PetInfoCreate(Resource):
 
         insert_content = []
         for attribute in PET_INFO_DETAIL_MYSQL:
-            insert_content.append(args[attribute])
+            if args[attribute] == 'same':
+                insert_content.append(content[0][attribute])
+            else:
+                insert_content.append(args[attribute])
 
-        # insert_content[0] = "\'" + insert_content[0] + "\'"
-        # insert_content[2] = "\'" + insert_content[2] + "\'"
-        # insert_content[15] = "\'" + insert_content[15] + "\'"
-        # insert_str = ", ".join(insert_content)
-        # insert_str = "(" + insert_str + ")"
-
-        # sql_2 = "INSERT INTO pet_info" + PET_INFO_DETAIL_ATTRIBUTES + " VALUES " + insert_str
-        # cur.execute(sql_2)
-        # self.connector.commit()
-
-        cur.callproc(procname='petshop.create_pet',
+        cur.callproc(procname='petshop.update_pet',
                      args=insert_content)
-        # Very Important!
         self.connector.commit()
 
         sql_3 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id_

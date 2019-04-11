@@ -9,8 +9,7 @@ import {BehaviorSubject} from 'rxjs'
 // export const ws$ = webSocket<IReceivedPayload>(serverConfig.wsServerURL)
 export const ws$ = new BehaviorSubject({})
 const trunk$ = ws$.pipe(
-    withLatestFrom<IReceivedPayload, [IReceivedPayload, IRootData]>(root$),
-    tap((t) => console.log('thunk, ', t))
+    withLatestFrom<IReceivedPayload, [IReceivedPayload, IRootData]>(root$)
 )
 
 export {trunk$}

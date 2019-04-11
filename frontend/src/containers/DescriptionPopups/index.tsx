@@ -26,24 +26,44 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
     }]
     const data = [{
         key: '1',
+        description: 'id',
+        detail: props.id,
+    }, {
+        key: '2',
         description: 'Name',
         detail: props.name,
     }, {
-        key: '2',
+        key: '3',
         description: 'Age',
         detail: props.age,
     }, {
-        key: '3',
+        key: '4',
         description: 'Breed',
         detail: props.breed,
     }, {
-        key: '4',
+        key: '5',
         description: 'Color',
         detail: props.color,
     }, {
-        key: '5',
-        description: 'id',
-        detail: props.id,
+        key: '6',
+        description: 'Maturity Size',
+        detail: props.maturitySize
+    }, {
+        key: '7',
+        description: 'Fur Length',
+        detail: props.furLength
+    }, {
+        key: '8',
+        description: 'Health',
+        detail: props.health
+    }, {
+        key: '9',
+        description: 'Quantity',
+        detail: props.quantity
+    }, {
+        key: '10',
+        description: 'Fee',
+        detail: props.fee
     }]
     return (
         <div className={style.descriptionPopupsContainer}>
@@ -51,7 +71,7 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                 <div
                     className={style.imgContainer}
                     style={{
-                        background: 'url(/test.jpg)',
+                        background: `url(${props.imageURL})`,
                         backgroundSize: 'cover',
                     }}
                 />

@@ -77,6 +77,7 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                     style={{
                         background: `url(${props.imageURL})`,
                         backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat'
                     }}
                 />
             </div>

@@ -1,5 +1,6 @@
 import {IPetDescription} from '../interfaces/IPetDescription'
 import {IPetDescriptionData} from '../dataStreams/models/ReceivedData/Data-types/IPetDescriptionData'
+import axios from 'axios'
 import {ws$} from '../dataStreams/thunk$'
 
 export function getPetDescription(id: string): void {

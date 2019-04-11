@@ -75,7 +75,7 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                 <div
                     className={style.imgContainer}
                 >
-                    <img src=`${props.imageURL}` alt='test'/>
+                    <img src={`${props.imageURL}`} alt='test'/>
                 </div>
             </div>
             <div className={style.descriptionContainer}>

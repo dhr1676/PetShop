@@ -2,7 +2,7 @@ export type ReceiverType =
     'MasonryList' |
     'userInfo' |
     'userAuth' |
-    'petSearch'|
+    'PetSearch'|
     'logout'|
     'PetSearch'|
     'PureMessage'

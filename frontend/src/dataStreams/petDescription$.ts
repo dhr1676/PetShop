@@ -42,6 +42,6 @@ function format(data: IRawPetSearchData):IPetDescription {
     }
 }
 export const petDescription$ = trunk$.pipe(
-    filter(([data, _]) => data.type === 'petSearch'),
+    filter(([data, _]) => data.type === 'PetSearch'),
     map(([payload, _]) => format(payload.data as IRawPetSearchData)),
 )

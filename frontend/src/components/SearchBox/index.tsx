@@ -13,7 +13,7 @@ export const SearchBox: React.FunctionComponent<ISearchBoxProps> = (props) => (
     <input
         className={style.searchBox}
         value={props.value}
-        onChange={(e) => {console.log(e.target.value); props.handleSubmit(e.target.value)}}
+        onChange={(e) => {}}
         onSubmit={(e) => props.handleSubmit(props.value)}
     />
     <span className={style.search}/>

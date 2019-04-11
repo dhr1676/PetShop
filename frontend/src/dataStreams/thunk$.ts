@@ -10,6 +10,7 @@ import {BehaviorSubject} from 'rxjs'
 export const ws$ = new BehaviorSubject({})
 const trunk$ = ws$.pipe(
     withLatestFrom<IReceivedPayload, [IReceivedPayload, IRootData]>(root$),
+    tap((t) => console.log('thunk, ', t))
 )
 
 export {trunk$}

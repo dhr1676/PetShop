@@ -10,7 +10,7 @@ export interface IPetDescription {
     isVaccinated: string,
     isSterilized: string,
     health: string,
-    quatity: string,
+    quantity: string,
     fee: string,
     shop: string,
     description: string,

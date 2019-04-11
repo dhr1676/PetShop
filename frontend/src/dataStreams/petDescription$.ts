@@ -34,7 +34,7 @@ function format(data: IRawPetSearchData):IPetDescription {
         isVaccinated: data.vaccinated,
         isSterilized: data.sterillized,
         health: data.health,
-        quatity: data.quantity,
+        quantity: data.quantity,
         fee: data.fee,
         shop: data.shop,
         description: data.description,

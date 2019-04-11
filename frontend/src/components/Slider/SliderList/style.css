@@ -1,0 +1,13 @@
+.listContainer {
+    box-sizing: border-box;
+    margin: 0;
+    list-style: none;
+    position: absolute;
+    padding: 0;
+    display: flex;
+}
+
+.listItem {
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}

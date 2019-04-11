@@ -1,0 +1,39 @@
+.InfoPopupsContainer {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    background-color: rgba(33, 33, 33, 0.5);
+    color: white;
+    padding: 0.75em;
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 1.5em;
+}
+
+.description {
+    color: #ccc;
+    flex: 1;
+    overflow: hidden;
+}
+
+.commandContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 0.3em;
+    flex-shrink: 0;
+}
+
+.icon {
+    position: relative;
+    height: 1em;
+    width: 1em;
+    background: url(assert/more.svg);
+    background-size: cover;
+    cursor: pointer;
+}
+
+.moreOptionsContainer {
+}
+

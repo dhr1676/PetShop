@@ -1,0 +1,20 @@
+.searchBox {
+    background: rgba(233, 233, 233, 0.8);
+    border: 0;
+    border-radius: 0.125rem;
+    height: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.search {
+    display: block;
+    height: 1rem;
+    width: 1rem;
+    margin-left: -1.25rem;
+    background: url('./search.svg');
+    background-size: cover;
+}
+.inputContainer {
+    display: flex;
+    align-items: center;
+}

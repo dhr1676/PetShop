@@ -1,0 +1,8 @@
+.sliderContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.sliderNavContainer {
+    position: absolute
+}

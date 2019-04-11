@@ -25,7 +25,7 @@ def get_json_pet_info_detail(content_tuple):
     result = {}
     for index, content in enumerate(content_tuple):
         result[PET_INFO_DETAIL_MYSQL[index]] = content
-    result["image_url"] = "C:/Games/PycharmProjects/PetShop/data/image/" + str(result["pet_id"]) + "-1.jpg"
+    result["image_url"] = "/image/" + str(result["pet_id"]) + "-1.jpg"
     return result
 
 
@@ -33,7 +33,7 @@ def get_json_pet_info_masonry(content_tuple):
     temp = {}
     for index, content in enumerate(content_tuple):
         temp[PET_INFO_DETAIL_MYSQL[index]] = content
-    temp["image_url"] = "C:/Games/PycharmProjects/PetShop/data/image/" + str(temp["pet_id"]) + "-1.jpg"
+    temp["image_url"] = "/image/" + str(temp["pet_id"]) + "-1.jpg"
     result = {}
     for attribute in PET_INFO_MASONRY:
         result[attribute] = temp[attribute]

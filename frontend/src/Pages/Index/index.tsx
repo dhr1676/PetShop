@@ -158,6 +158,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
         throw new Error('not Implemented')
     }
     handleClickCell = (id: string) => {
+        console.log('id', id)
         getPetDescription(id)
         this.setState({
             isShowingDescription: true,

@@ -29,8 +29,8 @@ function format(data: IRawPetListData): IPetListData {
 }
 
 export const petList$ = trunk$.pipe(
-    tap((t) => console.log('petList, ', t)),
     filter(([data, _]) => data.type === 'MasonryList'),
     map(([payload, _]) => format(payload.data as IRawPetListData)),
+    tap((t) => console.log('petList, ', t)),
 )
 

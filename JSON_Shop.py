@@ -8,5 +8,5 @@ def get_json_shop_detail(content_tuple):
     for index, content in enumerate(content_tuple):
         result[SHOP_DETAIL[index]] = content
     if "pet_id" in result:
-        result["image_url"] = "./data/image/" + str(result["pet_id"]) + "-1.jpg"
+        result["image_url"] = "C:/Games/PycharmProjects/PetShop/data/image/" + str(result["pet_id"]) + "-1.jpg"
     return result

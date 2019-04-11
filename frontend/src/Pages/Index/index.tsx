@@ -139,6 +139,8 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
     handleSearch = (val: string) => {
         this.setState(() => {
             return {
+            isShowingDescription: true,
+            isShowingLogin: false,
             searchBoxValue: val,
         }})
     }

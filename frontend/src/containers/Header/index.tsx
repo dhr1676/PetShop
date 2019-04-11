@@ -42,7 +42,7 @@ export class Header extends React.PureComponent<IHeaderProps, IHeaderState> {
                 <div className={style.logoContainer} onClick={this.props.handleClickHome}>
                     Animal Welfare
                 </div>
-                <SearchBox value={this.props.value} handleSubmit={this.props.handleSearch} enableAutoSubmit={true}/>
+                <SearchBox value={this.props.value} handleSubmit={this.props.handleSearch} enableAutoSubmit={false}/>
                 {
                     this.props.isLoggedIn ?
                         (

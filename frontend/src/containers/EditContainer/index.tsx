@@ -28,7 +28,7 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(props.id, val)}`).then((res) => {
+            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(props.id || val.id, val)}`).then((res) => {
                 props.handleSubmit(props)
             })
         })
@@ -37,6 +37,14 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
     return (
         <div className={style.contain}>
         <Form onSubmit={handleSubmit} className='login-form'>
+                <Form.Item label='ID'>
+                {getFieldDecorator('pet_id', {
+                    initialValue: props.id || '',
+                    rules: [{required: true, message: 'This is a required field'}],
+                })(
+                    <Input/>,
+                )}
+            </Form.Item>
             <Form.Item label='Type'>
                 {getFieldDecorator('pet_type', {
                     initialValue: props.type || '',

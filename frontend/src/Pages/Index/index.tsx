@@ -266,7 +266,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                     this.state.isShowingAdd ? (
                         <div className={style.descriptionContainer}>
                             <div>
-                                <EditContainer handleSubmit={this.handleSubmitForm}/>
+                                <EditContainer handleSubmit={this.handleSubmitForm} methods='post'/>
                             </div>
                         </div>
                     ) : ''

@@ -9,11 +9,12 @@ import {option} from '../../option'
 interface IEditContainerProps extends Partial<IPetDescription> {
     handleSubmit: (data: Partial<IPetDescription>) => void,
     // obHandleCancel: () => void,
-    form: WrappedFormUtils
+    form: WrappedFormUtils,
+    methods: 'put' | 'post'
 }
 
-function queryify(id, obj) {
-    let res = `?pet_id=${id}&`
+function queryify(obj) {
+    let res = `?`
     for (let key in obj) {
         if (obj[key]) {
             res = `${res}${key}=${obj[key]}&`
@@ -28,7 +29,7 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(props.id || val.id, val)}`).then((res) => {
+            axios[props.methods](`${option.base}/PetInfoDetail/${props.id || val.id }${queryify(val)}`).then((res) => {
                 props.handleSubmit(props)
             })
         })

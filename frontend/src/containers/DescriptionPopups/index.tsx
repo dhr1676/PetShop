@@ -121,6 +121,7 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                                         props.handleSubmit(d)
                                         setEditingState(false)
                                     }}
+                                    methods='put'
                                 />
                             </div>
                         )

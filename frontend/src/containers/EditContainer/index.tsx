@@ -12,8 +12,8 @@ interface IEditContainerProps extends Partial<IPetDescription> {
     form: WrappedFormUtils
 }
 
-function queryify(obj) {
-    let res = '?'
+function queryify(id, obj) {
+    let res = `?pet_id=${id}`
     for (let key in obj) {
         if (obj[key]) {
             res = `${res}${key}=${obj[key]}&`
@@ -28,7 +28,7 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(val)}`).then((res) => {
+            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(props.id, val)}`).then((res) => {
                 props.handleSubmit(props)
             })
         })

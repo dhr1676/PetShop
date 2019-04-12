@@ -12,16 +12,23 @@ interface IEditContainerProps extends Partial<IPetDescription> {
     form: WrappedFormUtils
 }
 
+function queryify(obj) {
+    let res = '?'
+    for (let key in obj) {
+        if (obj[key]) {
+            res = `${res}${key}=${obj[key]}&`
+        }
+    }
+    let ans = res.split('')
+    ans.pop()
+    return ans.join('')
+}
 const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props) => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            axios.put(`${option.base}/PetInfoDetail/${props.id}`, {
-                params: {
-                    ...val,
-                }
-            }).then((res) => {
+            axios.put(`${option.base}/PetInfoDetail/${props.id}${queryify(val)}`).then((res) => {
                 props.handleSubmit(props)
             })
         })

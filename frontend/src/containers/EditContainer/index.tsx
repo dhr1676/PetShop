@@ -4,7 +4,7 @@ import * as React from 'react'
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 
 interface IEditContainerProps extends Partial<IPetDescription> {
-    // onHandleSubmit: (data: Partial<IPetDescription>) => void,
+    handleSubmit: (data: Partial<IPetDescription>) => void,
     // obHandleCancel: () => void,
     form: WrappedFormUtils
 }

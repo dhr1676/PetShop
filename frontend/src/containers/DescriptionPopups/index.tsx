@@ -103,7 +103,7 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                                             ''
                                         }
                                         {props.isSeller ?
-                                            (<Button type={'danger'} onClick={() => props.handleClickDeleteBtn(this.id)}>Delete</Button>) :
+                                            (<Button type={'danger'} onClick={() => props.handleClickDeleteBtn(props.id)}>Delete</Button>) :
                                             ''
                                         }
                                     </BG>

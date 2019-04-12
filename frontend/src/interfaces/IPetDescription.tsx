@@ -4,6 +4,7 @@ export interface IPetDescription {
     name: string,
     age: number,
     breed: string,
+    gender: string,
     color: string,
     maturitySize: string,
     furLength: string,

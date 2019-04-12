@@ -21,13 +21,14 @@ interface IRawPetSearchData {
     description: string,
     image_url: string
 }
-function format(data: IRawPetSearchData):IPetDescription {
+function format(data: IRawPetSearchData): IPetDescription {
     return {
         id: data.pet_id,
         type: data.pet_type,
         name: data.name,
         age: data.age,
         breed: data.breed,
+        gender: data.gender,
         color: data.color,
         maturitySize: data.maturity_size,
         furLength: data.fur_length,
@@ -38,7 +39,7 @@ function format(data: IRawPetSearchData):IPetDescription {
         fee: data.fee,
         shop: data.shop,
         description: data.description,
-        imageURL: data.image_url
+        imageURL: data.image_url,
     }
 }
 export const petDescription$ = trunk$.pipe(

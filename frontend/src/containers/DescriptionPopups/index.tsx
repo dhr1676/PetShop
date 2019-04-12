@@ -72,6 +72,10 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
         detail: props.fee,
     }, {
         key: '11',
+        description: 'Shop',
+        detail: props.shop,
+    }, {
+        key: '12',
         description: 'Description',
         detail: props.description,
     }]

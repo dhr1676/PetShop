@@ -17,7 +17,11 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            axios.put(`${option.base}/PetInfoDetail/${props.id}`).then((res) => {
+            axios.put(`${option.base}/PetInfoDetail/${props.id}`, {
+                params: {
+                    ...val,
+                }
+            }).then((res) => {
                 props.handleSubmit(props)
             })
         })

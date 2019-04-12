@@ -21,9 +21,11 @@ class PetInfoDetail(Resource):
         :return:
         """
         cur = self.connector.cursor()
-        _pet_id = "\"" + _pet_id + "\""
-        sql_1 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id
-        cur.execute(sql_1)
+        # _pet_id = "\"" + _pet_id + "\""
+        # sql_1 = "SELECT * FROM pet_info WHERE pet_id = " + _pet_id
+        # cur.execute(sql_1)
+        cur.callproc(procname='petshop.search_pet', args=[_pet_id])
+        # self.connector.commit()
         content = [get_json_pet_info_detail(i) for i in cur.fetchall()]
         if not content:
             return get_json_format("Success", 200, "PetSearch", {})

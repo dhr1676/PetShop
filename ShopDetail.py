@@ -21,17 +21,15 @@ class ShopDetail(Resource):
         :return:
         """
         cur = self.connector.cursor()
-        sql_1 = "SELECT t2.shop_id, t2.shop_name, t1.pet_id, t1.name" \
-                " FROM pet_info AS t1 JOIN shop AS t2" \
-                " ON t1.shop = t2.shop_id" \
-                " WHERE t2.shop_id = " + _shop_id
-        cur.execute(sql_1)
-        # cur.callproc(procname='petshop.search_shop',
-        #              args=[_shop_id])
+        # sql_1 = "SELECT t2.shop_id, t2.shop_name, t1.pet_id, t1.name" \
+        #         " FROM pet_info AS t1 JOIN shop AS t2" \
+        #         " ON t1.shop = t2.shop_id" \
+        #         " WHERE t2.shop_id = " + _shop_id
+        # cur.execute(sql_1)
+        cur.callproc(procname='petshop.search_shop',
+                     args=[_shop_id])
 
         content = [get_json_shop_detail(i) for i in cur.fetchall()]
-        print(type(content))
-        print(type(content[0]))
         # If we use cur.fetchall() one time, the all content will be removed
         if not content:
             return get_json_format("Success", 200, "ShopSearch", {})

@@ -20,6 +20,8 @@ import axios from 'axios'
 import { option } from '../../option';
 import { EditContainer } from '../../containers/EditContainer';
 
+import { Icon } from 'antd'
+
 interface IIndexProps {
     // user
     isLoggedIn: boolean,
@@ -192,6 +194,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
         this.setState({
             isShowingDescription: false,
             isShowingLogin: false,
+            isShowingAdd: false,
         })
     }
     handleSubmitForm = (data: IRawPetSearchData) => {
@@ -268,6 +271,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                             <div>
                                 <EditContainer handleSubmit={this.handleSubmitForm} methods='post'/>
                             </div>
+                            <Icon className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
                         </div>
                     ) : ''
                 }

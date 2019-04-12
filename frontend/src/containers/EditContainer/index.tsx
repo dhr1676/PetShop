@@ -13,7 +13,7 @@ interface IEditContainerProps extends Partial<IPetDescription> {
 }
 
 function queryify(id, obj) {
-    let res = `?pet_id=${id}`
+    let res = `?pet_id=${id}&`
     for (let key in obj) {
         if (obj[key]) {
             res = `${res}${key}=${obj[key]}&`

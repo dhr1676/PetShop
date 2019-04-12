@@ -270,8 +270,8 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                         <div className={style.descriptionContainer}>
                             <div>
                                 <EditContainer handleSubmit={this.handleSubmitForm} methods='post'/>
+                                <Icon className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
                             </div>
-                            <Icon className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
                         </div>
                     ) : ''
                 }

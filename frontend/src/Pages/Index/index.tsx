@@ -16,6 +16,9 @@ import {DescriptionPopups} from '../../containers/DescriptionPopups'
 import {IPetDescription} from '../../interfaces/IPetDescription'
 import {petDescription$, IRawPetSearchData} from '../../dataStreams/petDescription$'
 import {getPetDescription} from '../../api/getPetDescription'
+import axios from 'axios'
+import { option } from '../../option';
+
 interface IIndexProps {
     // user
     isLoggedIn: boolean,
@@ -183,6 +186,14 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
             isShowingLogin: false,
         })
     }
+    handleDeleteBtn = (id: string) => {
+        axios.delete(`${option.base}/PetInfoDetail/${id}`).then((res) => {
+            this.setState({
+                isShowingDescription: false,
+                isShowingLogin: false,
+            })
+        })
+    }
     render() {
         return (
             <div className={style.indexOuterContainer}>
@@ -225,6 +236,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                                     }
                                     handleClickCloseBtn={this.handleClickCloseBtn}
                                     handleSubmit={this.handleSubmitForm}
+                                    handleClickDeleteBtn={this.handleDeleteBtn}
                                     isSeller={this.props.userType === 'seller'}
                                 />
                             </div>

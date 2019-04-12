@@ -178,6 +178,10 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
     handleSubmitForm = (data: IRawPetSearchData) => {
         // TODO: 发送
         console.log(data)
+        this.setState({
+            isShowingDescription: false,
+            isShowingLogin: false,
+        })
     }
     render() {
         return (

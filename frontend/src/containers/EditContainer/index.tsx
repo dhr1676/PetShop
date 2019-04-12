@@ -3,6 +3,9 @@ import { Form, Input, Button, Radio } from 'antd'
 import * as React from 'react'
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import style from './style.css'
+import axios from 'axios'
+import {option} from '../../option'
+
 interface IEditContainerProps extends Partial<IPetDescription> {
     handleSubmit: (data: Partial<IPetDescription>) => void,
     // obHandleCancel: () => void,
@@ -14,7 +17,9 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
         e.preventDefault();
         props.form.validateFields((err, val) => {
             // TODO: 改变真实提交方式
-            console.log('submitted, ', val)
+            axios.put(`${option.base}/PetInfoDetail/${props.id}`).then((res) => {
+                props.handleSubmit(props)
+            })
         })
     }
     const { getFieldDecorator } = props.form

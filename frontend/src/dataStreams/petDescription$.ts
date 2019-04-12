@@ -2,7 +2,7 @@ import {trunk$} from './thunk$'
 import {filter, map} from 'rxjs/operators'
 import {IPetDescription} from '../interfaces/IPetDescription'
 
-interface IRawPetSearchData {
+export interface IRawPetSearchData {
     pet_id: string,
     pet_type: string,
     name: string,

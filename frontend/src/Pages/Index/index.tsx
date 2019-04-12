@@ -14,7 +14,7 @@ import {InfoFlowContainer} from '../../containers/InfoFlowContainer'
 import style from './style.css'
 import {DescriptionPopups} from '../../containers/DescriptionPopups'
 import {IPetDescription} from '../../interfaces/IPetDescription'
-import {petDescription$} from '../../dataStreams/petDescription$'
+import {petDescription$, IRawPetSearchData} from '../../dataStreams/petDescription$'
 import {getPetDescription} from '../../api/getPetDescription'
 interface IIndexProps {
     // user
@@ -63,7 +63,7 @@ interface IUserInfo {
 }
 
 const userInfo$ = user$.pipe(
-    map<IUserData, IUserInfo>(({username, userid, userType}) => {
+    map<IUserData, IUserData>(({username, userid, userType}) => {
         return {
             username,
             userid,
@@ -71,7 +71,7 @@ const userInfo$ = user$.pipe(
             isLoggedIn: true,
         }
     }),
-    startWith<IUserInfo, IUserInfo>(
+    startWith<IUserData, IUserInfo>(
         {
             username: '',
             userid: '',
@@ -79,6 +79,7 @@ const userInfo$ = user$.pipe(
             isLoggedIn: false,
         },
     ),
+    tap((e) => console.log('received userInfo', e)),
 )
 
 const logoutIndex$ = logout$.pipe(
@@ -95,6 +96,7 @@ const petDesc$ = petDescription$.pipe(
     }),
 )
 const index$ = combineLatest<[IPetListData, IUserInfo, Partial<IPetDescription>, boolean]>(info$, userInfo$, petDesc$, logoutIndex$).pipe(
+    tap((e) => console.log('received index', e)),
     map<[IPetListData, IUserInfo, Partial<IPetDescription>, boolean], IIndexProps>(([list, user, description, isLoggedOut]) => {
         return {
             isLoggedIn: user.isLoggedIn,
@@ -173,6 +175,10 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
             isShowingLogin: false,
         })
     }
+    handleSubmitForm = (data: IRawPetSearchData) => {
+        // TODO: 发送
+        console.log(data)
+    }
     render() {
         return (
             <div className={style.indexOuterContainer}>
@@ -214,6 +220,8 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                                         ...this.props.petDescription
                                     }
                                     handleClickCloseBtn={this.handleClickCloseBtn}
+                                    handleSubmit={this.handleSubmitForm}
+                                    isSeller={this.props.userType === 'seller'}
                                 />
                             </div>
                         </div>

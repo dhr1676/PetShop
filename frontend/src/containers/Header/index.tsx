@@ -8,6 +8,7 @@ interface IHeaderProps {
     handleClickHome: () => void,
     handleClickLogin: () => void,
     handleClickLogout: () => void
+    handleClickAdd: () => void,
     isLoggedIn: boolean,
     username?: string,
 }
@@ -49,6 +50,7 @@ export class Header extends React.PureComponent<IHeaderProps, IHeaderState> {
                         (
                             <div className={style.commandContainer}>
                                 Welcome, {this.props.username} |
+                                <span onClick={this.props.handleClickAdd}> Add</span>|
                                 <span onClick={this.props.handleClickLogout}> Logout</span>
                             </div>
                         ) : (

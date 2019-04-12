@@ -18,6 +18,7 @@ import {petDescription$, IRawPetSearchData} from '../../dataStreams/petDescripti
 import {getPetDescription} from '../../api/getPetDescription'
 import axios from 'axios'
 import { option } from '../../option';
+import { EditContainer } from '../../containers/EditContainer';
 
 interface IIndexProps {
     // user
@@ -38,6 +39,7 @@ interface IIndexState {
     columnCount: number,
     isShowingLogin: boolean,
     isShowingDescription: boolean,
+    isShowingAdd: boolean,
     searchBoxValue: string,
     showingDescriptionsIds: string,
 }
@@ -137,6 +139,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
             columnWidth: '16vw',
             isShowingLogin: false,
             isShowingDescription: false,
+            isShowingAdd: false,
             searchBoxValue: '',
             showingDescriptionsIds: '',
         }
@@ -169,6 +172,11 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
             isShowingLogin: true,
         })
     }
+    handleClickAdd = () => {
+        this.setState({
+            isShowingAdd: true,
+        })
+    }
     handleClickLogout = () => {
         throw new Error('not Implemented')
     }
@@ -192,6 +200,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
         this.setState({
             isShowingDescription: false,
             isShowingLogin: false,
+            isShowingAdd: false,
         })
     }
     handleDeleteBtn = (id: string) => {
@@ -214,6 +223,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                         handleClickHome={this.handleClickHome}
                         handleClickLogin={this.handleClickLogin}
                         handleClickLogout={this.handleClickLogout}
+                        handleClickAdd={this.handleClickAdd}
                         isLoggedIn={this.props.isLoggedIn}
                         username={this.props.username}
                     />
@@ -248,6 +258,15 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                                     handleClickDeleteBtn={this.handleDeleteBtn}
                                     isSeller={this.props.userType === 'seller'}
                                 />
+                            </div>
+                        </div>
+                    ) : ''
+                }
+                {
+                    this.state.isShowingAdd ? (
+                        <div className={style.descriptionContainer}>
+                            <div>
+                                <EditContainer handleSubmit={this.handleSubmitForm}/>
                             </div>
                         </div>
                     ) : ''

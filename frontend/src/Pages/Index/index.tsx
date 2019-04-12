@@ -212,7 +212,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                 </div>
             </div>
                 {
-                    !this.state.isShowingDescription ? (
+                    this.state.isShowingDescription ? (
                         <div className={style.descriptionContainer}>
                             <div>
                                 <DescriptionPopups

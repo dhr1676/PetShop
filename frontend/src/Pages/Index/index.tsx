@@ -269,7 +269,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                     this.state.isShowingAdd ? (
                         <div className={style.descriptionContainer}>
                             <div>
-                            <Icon style={{float: 'right', marginRight: '20px'}} className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
+                            <Icon style={{float: 'right', marginRight: '20px', marginTop: '20px'}} className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
                                 <EditContainer handleSubmit={this.handleSubmitForm} methods='post'/>
                             </div>
                         </div>

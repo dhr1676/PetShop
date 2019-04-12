@@ -1,7 +1,9 @@
-import {Button, Icon, Table} from 'antd'
-import * as React from 'react'
-import style from './style.css'
-import {IPetDescription} from '../../interfaces/IPetDescription'
+import { Button, Icon, Table } from 'antd';
+import * as React from 'react';
+import { IRawPetSearchData } from '../../dataStreams/petDescription$';
+import { IPetDescription } from '../../interfaces/IPetDescription';
+import style from './style.css';
+import { EditContainer } from '../EditContainer';
 
 const BG = Button.Group
 
@@ -9,12 +11,16 @@ interface IDescriptionPopupsProps extends IPetDescription {
     isSeller: boolean
     // control
     handleClickCloseBtn: () => void
-    handleClickEditBtn: (id: string ) => void
+    handleClickEditBtn: (id: string) => void
     handleClickContact: (id: string) => void
     handleClickDeleteBtn: (id: string) => void
+
+    handleSubmit: (data: IRawPetSearchData) => void
 }
 
 export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopupsProps>> = (props) => {
+    let [isEditing, setEditingState] = React.useState(false)
+
     const cols = [{
         title: 'Description',
         dataIndex: 'description',
@@ -47,27 +53,27 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
     }, {
         key: '6',
         description: 'Maturity Size',
-        detail: props.maturitySize
+        detail: props.maturitySize,
     }, {
         key: '7',
         description: 'Fur Length',
-        detail: props.furLength
+        detail: props.furLength,
     }, {
         key: '8',
         description: 'Health',
-        detail: props.health
+        detail: props.health,
     }, {
         key: '9',
         description: 'Quantity',
-        detail: props.quantity
+        detail: props.quantity,
     }, {
         key: '10',
         description: 'Fee',
-        detail: props.fee
+        detail: props.fee,
     }, {
         key: '11',
         description: 'Description',
-        detail: props.description
+        detail: props.description,
     }]
     return (
         <div className={style.descriptionPopupsContainer}>
@@ -77,29 +83,46 @@ export const DescriptionPopups: React.FunctionComponent<Partial<IDescriptionPopu
                     style={{
                         backgroundImage: `url(${props.imageURL})`,
                         backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat'
+                        backgroundRepeat: 'no-repeat',
                     }}
                 />
             </div>
             <div className={style.descriptionContainer}>
-                <div className={style.tableContainer}>
-                    <Table columns={cols} dataSource={data} showHeader={false} pagination={false}/>
-                </div>
-                <div className={style.bgContainer}>
-                    <BG>
-                        <Button type='primary' onClick={() => props.handleClickContact(props.id)}>Contact</Button>
-                        {props.isSeller ?
-                            (<Button onClick={() => props.handleClickEditBtn(props.id)}>Edit</Button>) :
-                            ''
-                        }
-                        {props.isSeller ?
-                            (<Button type={'danger'} onClick={() => props.handleClickDeleteBtn(this.id)}>Delete</Button>) :
-                            ''
-                        }
-                    </BG>
-                </div>
+                {
+                    !isEditing ?
+                        (
+                            <div>
+                                <div className={style.tableContainer}>
+                                    <Table columns={cols} dataSource={data} showHeader={false} pagination={false} />
+                                </div>
+                                <div className={style.bgContainer}>
+                                    <BG>
+                                        <Button type='primary' onClick={() => props.handleClickContact(props.id)}>Contact</Button>
+                                        {props.isSeller ?
+                                            (<Button onClick={() => {setEditingState(true); props.handleClickEditBtn(props.id)}}>Edit</Button>) :
+                                            ''
+                                        }
+                                        {props.isSeller ?
+                                            (<Button type={'danger'} onClick={() => props.handleClickDeleteBtn(this.id)}>Delete</Button>) :
+                                            ''
+                                        }
+                                    </BG>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className={style.editContaier}>
+                                <EditContainer
+                                    {...props}
+                                    handleSubmit={(d: IRawPetSearchData) => {
+                                        props.handleSubmit(d)
+                                        setEditingState(false)
+                                    }}
+                                />
+                            </div>
+                        )
+                }
             </div>
-            <Icon className={style.icon} type='close' onClick={() => props.handleClickCloseBtn()}/>
+            <Icon className={style.icon} type='close' onClick={() => props.handleClickCloseBtn()} />
         </div>
-        )
+    )
 }

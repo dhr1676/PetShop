@@ -212,7 +212,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                 </div>
             </div>
                 {
-                    this.state.isShowingDescription ? (
+                    !this.state.isShowingDescription ? (
                         <div className={style.descriptionContainer}>
                             <div>
                                 <DescriptionPopups
@@ -233,11 +233,14 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
 }
 
 const flowWithRx = withObservableStream<IIndexProps>(index$, () => console.log('index flow!'), {
-    isLoggedIn: false,
+    isLoggedIn: true,
     infoArray: [],
     imageURL: [],
     index: 0,
     petDescription: {},
+    username: '',
+    userid: '',
+    userType: 'seller',
 })
 
 export const Index = flowWithRx<{}>(IndexContaier)

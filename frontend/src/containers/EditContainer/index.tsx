@@ -2,7 +2,7 @@ import {IPetDescription} from '../../interfaces/IPetDescription'
 import { Form, Input, Button, Radio } from 'antd'
 import * as React from 'react'
 import { WrappedFormUtils } from 'antd/lib/form/Form';
-
+import style from './style.css'
 interface IEditContainerProps extends Partial<IPetDescription> {
     handleSubmit: (data: Partial<IPetDescription>) => void,
     // obHandleCancel: () => void,
@@ -19,6 +19,7 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
     }
     const { getFieldDecorator } = props.form
     return (
+        <div className={style.contain}>
         <Form onSubmit={handleSubmit} className='login-form'>
             <Form.Item label='Type'>
                 {getFieldDecorator('pet_type', {
@@ -161,6 +162,7 @@ const EditContainerInner: React.FunctionComponent<IEditContainerProps> = (props)
                 Submit
             </Button>
         </Form>
+        </div>
     )
 }
 

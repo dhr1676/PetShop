@@ -142,10 +142,18 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
         }
     }
     handleSearch = (val: string) => {
+        console.log(val)
+        getPetDescription(val)
         this.setState(() => {
             return {
             isShowingDescription: true,
             isShowingLogin: false,
+            searchBoxValue: val,
+        }})
+    }
+    handleInput = (val: string) => {
+        this.setState(() => {
+            return {
             searchBoxValue: val,
         }})
     }
@@ -201,6 +209,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                 <div className={style.headerContainer}>
                     <Header
                         value={this.state.searchBoxValue}
+                        handleInput={this.handleInput}
                         handleSearch={this.handleSearch}
                         handleClickHome={this.handleClickHome}
                         handleClickLogin={this.handleClickLogin}

@@ -3,6 +3,7 @@ import {SearchBox} from '../../components/SearchBox'
 import style from './style.css'
 interface IHeaderProps {
     value: string,
+    handleInput: (val: string) => void,
     handleSearch: (val: string) => void,
     handleClickHome: () => void,
     handleClickLogin: () => void,
@@ -42,7 +43,7 @@ export class Header extends React.PureComponent<IHeaderProps, IHeaderState> {
                 <div className={style.logoContainer} onClick={this.props.handleClickHome}>
                     Animal Welfare
                 </div>
-                <SearchBox value={this.props.value} handleSubmit={this.props.handleSearch} enableAutoSubmit={false}/>
+                <SearchBox value={this.props.value} handleInput={this.props.handleInput} handleSubmit={this.props.handleSearch} enableAutoSubmit={false}/>
                 {
                     this.props.isLoggedIn ?
                         (

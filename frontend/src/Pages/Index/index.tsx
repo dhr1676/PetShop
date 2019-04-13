@@ -21,6 +21,8 @@ import { option } from '../../option';
 import { EditContainer } from '../../containers/EditContainer';
 
 import { Icon } from 'antd'
+import { ws$ } from '../../dataStreams/thunk$';
+import { LoginContainer } from '../../containers/LoginContainer';
 
 interface IIndexProps {
     // user
@@ -214,6 +216,22 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
             })
         })
     }
+    handleLogin = (username: string, usertype: string) => {
+        ws$.next({
+            message: 'success',
+            code: 200,
+            type: 'userInfo',
+            data: {
+                username,
+                userid: '666',
+                userType: usertype,
+            },
+        })
+        this.setState({
+            isShowingDescription: false,
+            isShowingLogin: false,
+        })
+    }
     render() {
         return (
             <div className={style.indexOuterContainer}>
@@ -275,13 +293,25 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
                         </div>
                     ) : ''
                 }
+                {
+                    this.state.isShowingLogin ? (
+                        <div className={style.descriptionContainer}>
+                            <div style={{width: '50%', position: 'absolute', top: '0', left: '0', right: '0', bottom: '0', margin: 'auto'}}>
+                            <Icon style={{float: 'right', marginRight: '20px', marginTop: '20px'}} className={style.icon} type='close' onClick={() => this.handleClickCloseBtn()} />
+                            <div style={{width: '50%', position: 'absolute', top: '5rem', left: '0', right: '0', bottom: '0', margin: 'auto'}}>
+                            <LoginContainer handleLogin={this.handleLogin}/>
+                            </div>
+                            </div>
+                        </div>
+                    ) : ''
+                }
             </div>
         )
     }
 }
 
 const flowWithRx = withObservableStream<IIndexProps>(index$, () => console.log('index flow!'), {
-    isLoggedIn: true,
+    isLoggedIn: false,
     infoArray: [],
     imageURL: [],
     index: 0,

@@ -83,19 +83,19 @@ getPetList(0, 30)
 
 
 
-setTimeout(() => {
-    ws$.next({
-        message: "chenggong",
-        code: 200,
-        type: 'userInfo',
-        data: {
-            username: 'test',
-            userid: '666',
-            userType: 'seller',
-        },
-    })
-}, 4500)
-//
+// setTimeout(() => {
+//     ws$.next({
+//         message: "chenggong",
+//         code: 200,
+//         type: 'userInfo',
+//         data: {
+//             username: 'test',
+//             userid: '666',
+//             userType: 'seller',
+//         },
+//     })
+// }, 4500)
+// //
 
 // ReactDOM.render(
 //     <Header

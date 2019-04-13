@@ -79,7 +79,7 @@ ReactDOM.render(<Index/>, document.getElementById('app'))
 //     , document.getElementById('app'))
 
 ws$.subscribe((data) => console.log(data))
-getPetList(0, 30)
+getPetList(0, 60)
 
 
 

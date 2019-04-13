@@ -23,6 +23,7 @@ import { EditContainer } from '../../containers/EditContainer';
 import { Icon } from 'antd'
 import { ws$ } from '../../dataStreams/thunk$';
 import { LoginContainer } from '../../containers/LoginContainer';
+import { getPetList } from '../../api/getPetList';
 
 interface IIndexProps {
     // user
@@ -59,8 +60,8 @@ const info$ = petList$.pipe(
     map<[IPetListData, IPetListData], IPetListData>(([prevData, data]) => {
         return {
             index: data.index,
-            imgURL: prevData.imgURL.concat(data.imgURL),
-            description: prevData.description.concat(data.description),
+            imgURL: data.imgURL,
+            description: data.description,
         }}),
 )
 
@@ -202,6 +203,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
     handleSubmitForm = (data: IRawPetSearchData) => {
         // TODO: 发送
         console.log(data)
+        getPetList(0, 90)
         this.setState({
             isShowingDescription: false,
             isShowingLogin: false,
@@ -210,6 +212,7 @@ class IndexContaier extends React.Component<IIndexProps, IIndexState> {
     }
     handleDeleteBtn = (id: string) => {
         axios.delete(`${option.base}/PetInfoDetail/${id}`).then((res) => {
+            getPetList(0, 90)
             this.setState({
                 isShowingDescription: false,
                 isShowingLogin: false,

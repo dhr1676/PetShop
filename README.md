@@ -1,33 +1,90 @@
-# Pet Shop
+# A Database for animal welfare<br>Final Report
 
-## CS5200 Project Proposal
+Many people and families like to have pets. At the same time, many people choose to adopt pets from animal welfare platform, which not only satisfy the needs of pets, but also ease the pressure of animal welfare platform.Our project aims to build an information platform for animal welfare, showing pet data to users who want to adopt pets.
 
-### Group Members:
-Haoran Ding, Mangyue Sun
+## README docs
 
-### Project Brief Description
-Many people and families like to have pets. At the same time, many people choose to adopt pets from animal welfare platform, which not only satisfy the needs of pets, but also ease the pressure of animal welfare platform.
-Our project aims to build an information platform for animal welfare, showing pet data to users who want to adopt pets.
+README file is attached in our project folder already. You can also run our project on your computer following the instruction below:
 
-If users are registered as customers, the users can choose their favorite pets by setting rule filters, such as pet breed, fur color, or health condition.
-If users are registered as host, the users can post their pets' data on the platform, and the pets' data would be stored in the database.
+### Back-End
 
-### Data Domain and the Functionality
-An EER model is presented in Appendix I.
+// TODO
 
-### Functionality:
-Users as consumers should have the access to create data tuples, read tuples, update tuples and delete tuples, which should be controlled by exposed interfaces rather than directly control the database.
-Users as customers should have the access to read data tuples by using rule filters using the aforementioned interfaces.
+### Front-End
 
-The frontend part should have the functionality to allow the customers to view the data, control the frontend router, and communicate to the backend server.
-The backend part connect the frontend and the database, and provide APIs required by frontend.
+> Prerequisite: 
+>
+> 1. Node.js > 8. You can download Node.js from [here.](https://nodejs.org/en/download/)
+> 2. [A Chrome extensions](https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi) to resolve cross-origin issues. (Please make sure it opened before start the project)
 
-### SQL Storage
-We plan to use SQL storage to store the data. Because our model is a relational model which can be easily managed by the SQL.
+Goto the directory of the front-end project and install dependencies:
 
-### Realization of the Project
-We plan to use Python as the backend part programming language, using some frameworks like Django or Flask.
-And we plan to use React as the front-end presentation framework, and use Node as middle layer to control frontend router as well as server-side rendering.
+```shell
+npm install
+```
 
-### Reason to Choose this Data Domain
-Because we like animals. Millions of stray animals suffer on the streets or are euthanized in shelters every day around the world. If homes can be found for them, many precious lives can be saved — and more happy families created.
+and run the front-end server:
+
+```
+npm run start
+```
+
+then you can see the home page in [http://localhost:9000/](http://localhost:9000/). 
+
+There're two types of user in our project, customer and administrator. You can login as administrator by using the information provided below:
+
+```
+username: admin
+password: admin
+```
+
+
+
+## Technical Specifications
+
+### Database
+
+// TODO
+
+### Back-End
+
+// TODO
+
+### Front-End
+
+Front end accesses data using RESTful API provided by back-end service, sealing these different types of data using RxJS as a higher abstraction of the data flow to manage all state of the front-end application, and use React as the view model framework of this project to create a responsive and easy-to-use application.
+
+## Database Schema Sepcifications
+
+// TODO: insert UML and EER here...
+
+## User flow
+
+There're two types of users, namely common users (customers) and administrators. Common users can view all the pet of our system, and get the contact info of the owner if needed.User can also search a certain pet by its ID. Administrators can also view all pets, and they could also add, delete or edit pet info as well.
+
+![flow chart](./flow.png)
+
+## Lessons Learned
+
+### Technical expertise gained
+
+#### Front End
+
+We used React as the front-end framework, using minimal 3-rd library to practice building web application from scratch. Instead of using Redux as state manager, we use RxJS, a higher abstraction of state and data flow, to manage state, giving us much flexibility of handling complex AJAX requests.
+
+Session handling is also a key issue we encountered during finishing our project. Although we cannot handle that issue pretty well, some workarounds are implemented to achieve a smooth login process.
+
+### Data domain insight
+
+// TODO
+
+## Future work
+
+### Uses of the database
+
+// TODO
+
+### Functionality to be added
+
+We have already implemented simple CURD operations for administrators, but handling huge data when data scale became large would be troublesome. So a more versatile "Edit" page would be needed for our application, in which administrator can select and edit multiple pets at same time, which brings much efficiency.
+

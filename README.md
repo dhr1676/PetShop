@@ -60,3 +60,5 @@ username: admin
 password: admin
 ```
 
+If everything is ok, you should see this page:
+![Home Page](./Homepage.png)
